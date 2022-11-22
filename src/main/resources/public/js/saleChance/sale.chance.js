@@ -31,7 +31,7 @@ layui.use(['table','layer'],function(){
             // sort：是否允许排序（默认：false）
             // fixed：固定列
             {type:'checkbox', fixed:'center'}
-            ,{field: 'id', title: '编号',  sort: true, fixed: 'left'}
+            ,{field: 'id', width: 75, title: '编号',  sort: true, fixed: 'left'}
             ,{field: 'chanceSource', title: '机会来源', align:'center'}
             ,{field: 'customerName', title: '客户名称', align:'center'}
             ,{field: 'cgjl', title: '成功几率', align:'center'}
@@ -65,7 +65,7 @@ layui.use(['table','layer'],function(){
      */
     function formatState(state) {
         if (state == 0) {
-            return "<div style='color: yellow'>未分配</div>";
+            return "<div style='color: #699109'>未分配</div>";
         } else if (state == 1) {
             return "<div style='color: green'>已分配</div>";
         } else {
@@ -84,7 +84,7 @@ layui.use(['table','layer'],function(){
      */
     function formatDevResult(devResult) {
         if (devResult == 0) {
-            return "<div style='color: yellow'>未开发</div>";
+            return "<div style='color: #699109'>未开发</div>";
         } else if (devResult == 1) {
             return "<div style='color: orange'>开发中</div>";
         } else if (devResult == 2) {
@@ -100,7 +100,6 @@ layui.use(['table','layer'],function(){
      * 搜索按钮的点击事件
      */
     $(".search_btn").click(function () {
-
         /**
          * 表格重载
          *  多条件查询
@@ -182,7 +181,7 @@ layui.use(['table','layer'],function(){
     function deleteSaleChance(data) {
         // 获取数据表格选中的行数据   table.checkStatus('数据表格的ID属性值');
         var checkStatus = table.checkStatus("saleChanceTable");
-        console.log(checkStatus);
+        // console.log(checkStatus);
 
         // 获取所有被选中的记录对应的数据
         var saleChanceData = checkStatus.data;

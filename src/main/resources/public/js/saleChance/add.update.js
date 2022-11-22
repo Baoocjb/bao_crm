@@ -32,6 +32,7 @@ layui.use(['form', 'layer'], function () {
         }
 
         $.post(url, data.field, function (result) {
+            console.log(data.field);
             // 判断操作是否执行成功 200=成功
             if (result.code == 200) {
                 // 成功
@@ -98,7 +99,5 @@ layui.use(['form', 'layer'], function () {
             layui.form.render("select");
         }
     });
-
-
 
 });

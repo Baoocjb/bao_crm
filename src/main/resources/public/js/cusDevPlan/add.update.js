@@ -22,6 +22,10 @@ layui.use(['form', 'layer'], function () {
         // 请求的地址
         var url = ctx + "/cus_dev_plan/add";
 
+        if($('[name="id"]').val()){
+            url = ctx + "/cus_dev_plan/update";
+        }
+
         $.post(url, formData, function (result) {
             // 判断操作是否执行成功 200=成功
             if (result.code == 200) {

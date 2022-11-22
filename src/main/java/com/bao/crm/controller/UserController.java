@@ -2,18 +2,16 @@ package com.bao.crm.controller;
 
 import com.bao.crm.base.BaseController;
 import com.bao.crm.base.ResultInfo;
-import com.bao.crm.exceptions.ParamsException;
 import com.bao.crm.model.UserModel;
 import com.bao.crm.service.UserService;
-import com.bao.crm.utils.CookieUtil;
 import com.bao.crm.utils.UserHolder;
-import com.bao.crm.utils.UserIDBase64;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("user")
@@ -44,6 +42,13 @@ public class UserController extends BaseController {
 
     @GetMapping("toPasswordPage")
     public String toPasswordPage() {
-        return "password";
+        return "user/password";
+    }
+
+    @GetMapping("queryAllSales")
+    @ResponseBody
+    public List<Map<String, Object>> queryAllSales(){
+        List<Map<String, Object>> maps = userService.queryAllSales();
+        return maps;
     }
 }

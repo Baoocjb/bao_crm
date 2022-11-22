@@ -15,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+import java.util.Map;
+
 import static com.bao.crm.utils.LoginUserUtil.buildUserInfo;
 
 @Service
@@ -86,5 +89,9 @@ public class UserService extends BaseService<User, Integer> {
         AssertUtil.isTrue(StringUtils.isBlank(oldPwd), "旧密码不能为空!");
         AssertUtil.isTrue(StringUtils.isBlank(newPwd), "新密码不能为空!");
         AssertUtil.isTrue(StringUtils.isBlank(confirmPwd), "确认密码不能为空!");
+    }
+
+    public List<Map<String, Object>> queryAllSales(){
+        return userMapper.queryAllSales();
     }
 }

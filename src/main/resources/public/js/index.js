@@ -30,7 +30,8 @@ layui.use(['form', 'jquery', 'jquery_cookie'], function () {
                             $.cookie("trueName",result.result.trueName);
                         }
                         window.location.href = ctx + "/main";
-                        layer.msg(result.msg,{icon:4});
+
+                        layer.msg(result.msg,{icon:6});
                     });
                 }else{
                     layer.msg(result.msg,{icon:5});

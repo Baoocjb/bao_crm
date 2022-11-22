@@ -152,4 +152,17 @@
         set user_pwd = #{pwd}
         where id = #{userId}
     </update>
+    <!--查询所有的销售人员-->
+    <select id="queryAllSales" resultType="java.util.Map">
+        select tu.id,
+               tu.user_name uname
+        from t_user tu
+                 left join t_user_role tur
+                           on tu.id = tur.user_id
+                 left join t_role tr
+                           on tur.role_id = tr.id
+        where tu.is_valid = 1
+          and tr.is_valid = 1
+          and tr.id = 2
+    </select>
 </mapper>
