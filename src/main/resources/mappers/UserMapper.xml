@@ -34,7 +34,7 @@
                 #{trueName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
                 #{isValid,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
     </insert>
-    <insert id="insertSelective" parameterType="com.bao.crm.vo.User">
+    <insert id="insertSelective" parameterType="com.bao.crm.vo.User" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         insert into t_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -165,4 +165,30 @@
           and tr.is_valid = 1
           and tr.id = 2
     </select>
+    <select id="selectByParams" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        where
+        is_valid = 1
+        <if test="userName != null and userName != ''">
+            and user_name like concat('%', #{userName}, '%')
+        </if>
+        <if test="phone != null and phone != ''">
+            and phone like concat('%', #{phone}, '%')
+        </if>
+        <if test="email != null and email != ''">
+            and email like concat('%', #{email}, '%')
+        </if>
+    </select>
+    <update id="deleteBatch">
+        update
+            t_user
+        set
+            is_valid = 0
+        where id in
+            <foreach collection="array" item="id" open="(" close=")" separator=",">
+                #{id}
+            </foreach>
+    </update>
 </mapper>

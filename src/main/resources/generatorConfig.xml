@@ -61,7 +61,7 @@
         </javaClientGenerator>
 
 
-        <table tableName="t_cus_dev_plan" domainObjectName="CusDevPlan"
+        <table tableName="t_user_role" domainObjectName="UserRole"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
     </context>

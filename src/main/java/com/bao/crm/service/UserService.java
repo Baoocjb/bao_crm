@@ -2,12 +2,11 @@ package com.bao.crm.service;
 
 import com.bao.crm.base.BaseService;
 import com.bao.crm.dao.UserMapper;
+import com.bao.crm.dao.UserRoleMapper;
 import com.bao.crm.model.UserModel;
-import com.bao.crm.utils.AssertUtil;
-import com.bao.crm.utils.LoginUserUtil;
-import com.bao.crm.utils.Md5Util;
-import com.bao.crm.utils.UserIDBase64;
+import com.bao.crm.utils.*;
 import com.bao.crm.vo.User;
+import com.bao.crm.vo.UserRole;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -15,15 +14,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static com.bao.crm.utils.LoginUserUtil.buildUserInfo;
 
 @Service
 public class UserService extends BaseService<User, Integer> {
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private UserRoleMapper userRoleMapper;
 
     public UserModel userLogin(String userName, String userPwd) {
         // 用户输入参数判空
@@ -91,7 +93,91 @@ public class UserService extends BaseService<User, Integer> {
         AssertUtil.isTrue(StringUtils.isBlank(confirmPwd), "确认密码不能为空!");
     }
 
+    /**
+     * 查询所有角色为销售的用户
+     * @return
+     */
     public List<Map<String, Object>> queryAllSales(){
         return userMapper.queryAllSales();
+    }
+
+    /**
+     * 新增用户
+     */
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void addUser(User user){
+        // 参数校验
+        checkUserParams(user);
+        // 设置默认值
+        user.setUserPwd(Md5Util.encode("123456"));
+        user.setCreateDate(new Date());
+        user.setUpdateDate(new Date());
+        user.setIsValid(1);
+        AssertUtil.isTrue(userMapper.insertSelective(user) != 1, "用户添加失败!");
+
+        // 用户关联角色属性
+        relationUserWithRole(user.getId(), user.getRoleIds());
+    }
+
+    /**
+     * 用户关联角色
+     */
+    private void relationUserWithRole(Integer id, String roleIds) {
+        // 查询用户是否已经关联了角色
+        User user = userMapper.selectByPrimaryKey(id);
+        // 如果已经关联了角色
+        Integer count = userRoleMapper.countUserRelationRole(user.getId());
+        if(count > 0){
+            // 删除该用户关联的所有角色
+            AssertUtil.isTrue(userRoleMapper.delectUserRelationRole(user.getId()) < 1, "用户关联角色失败!");
+        }
+        if(StringUtils.isBlank(roleIds)){
+            return;
+        }
+        // 为该用户关联角色
+        String[] roleIdsArray = roleIds.split(",");
+        List<UserRole> list = new ArrayList<>();
+        for(String roleId : roleIdsArray){
+            UserRole userRole = new UserRole();
+            userRole.setRoleId(Integer.parseInt(roleId));
+            userRole.setUserId(user.getId());
+            userRole.setCreateDate(new Date());
+            userRole.setUpdateDate(new Date());
+            list.add(userRole);
+        }
+        Integer resCount = userRoleMapper.insertBatch(list);
+        AssertUtil.isTrue(resCount != list.size(), "用户关联角色失败!");
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void updateUser(User user){
+        checkUserParams(user);
+        User oldUser = userMapper.selectByPrimaryKey(user.getId());
+        AssertUtil.isTrue(user.getUserPwd() != null && !oldUser.getUserPwd().equals(Md5Util.encode(user.getUserPwd())), "修改密码非法请求!");
+        user.setUpdateDate(new Date());
+        userMapper.updateByPrimaryKeySelective(user);
+        // 用户关联角色属性
+        relationUserWithRole(user.getId(), user.getRoleIds());
+    }
+
+    private void checkUserParams(User user) {
+        AssertUtil.isTrue(user == null, "用户不能为空");
+        AssertUtil.isTrue(user.getUserName() == null, "用户姓名不能为空!");
+        AssertUtil.isTrue(user.getEmail() == null, "用户邮箱不能为空!");
+        AssertUtil.isTrue(user.getPhone() == null, "手机号码不能为空!");
+        AssertUtil.isTrue(!PhoneUtil.isMobile(user.getPhone()), "手机号码格式不正确");
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void deleteUsers(Integer[] ids) {
+        AssertUtil.isTrue(ids == null || ids.length == 0, "待删除用户不存在!");
+        // 删除用户
+        AssertUtil.isTrue(userMapper.deleteBatch(ids) != ids.length, "用户删除失败!");
+        // 删除用户关联角色
+        for(Integer userId : ids){
+            Integer countUserRelationRole = userRoleMapper.countUserRelationRole(userId);
+            Integer delectCount = userRoleMapper.delectUserRelationRole(userId);
+            AssertUtil.isTrue(countUserRelationRole != delectCount, "用户角色删除失败!");
+        }
     }
 }
