@@ -41,6 +41,8 @@ public class IndexController extends BaseController {
         int userId = LoginUserUtil.releaseUserIdFromCookie(request);
         User user = userService.selectByPrimaryKey(userId);
         request.getSession().setAttribute("user", user);
+
+
         return "main";
     }
 

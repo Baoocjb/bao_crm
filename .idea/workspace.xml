@@ -4,19 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="831e6ff8-3fba-482b-902b-a9b1e335b4eb" name="Default Changelist" comment="营销管理功能实现&#10;-20221122">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/controller/RoleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/query/UserQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/service/RoleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/user/add_update.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/user/user.ftl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="831e6ff8-3fba-482b-902b-a9b1e335b4eb" name="Default Changelist" comment="用户管理功能实现&#10;-20221123">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/controller/ModuleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/controller/PermissionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/model/TreeModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/query/RoleQuery.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/service/ModuleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/service/PermissionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/module/add.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/module/module.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/views/module/update.ftl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bao/crm/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bao/crm/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/bao/crm/vo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/vo/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bao/crm/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/controller/IndexController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bao/crm/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/controller/RoleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/bao/crm/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/bao/crm/service/RoleService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/generatorConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/js/role/grant.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/js/role/grant.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/js/role/role.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/js/role/role.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +78,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/views/user" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/views" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -93,9 +97,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\my_workspace\bao_crm\src\main\resources\views" />
       <recent name="D:\my_workspace\bao_crm\src\main\resources\views\user" />
       <recent name="D:\my_workspace\bao_crm\src\main\resources\public\js" />
-      <recent name="D:\my_workspace\bao_crm\src\main\resources\views" />
       <recent name="D:\my_workspace\bao_crm\src\main\resources\views\cusDevPlan" />
       <recent name="D:\my_workspace\bao_crm\src\main\resources\public\js\saleChance" />
     </key>
@@ -182,7 +186,9 @@
       <updated>1668951537077</updated>
       <workItem from="1668951539054" duration="27108000" />
       <workItem from="1669020442587" duration="152000" />
-      <workItem from="1669020615281" duration="47105000" />
+      <workItem from="1669020615281" duration="48819000" />
+      <workItem from="1669157430611" duration="605000" />
+      <workItem from="1669172500300" duration="11137000" />
     </task>
     <task id="LOCAL-00001" summary="用户信息管理完成">
       <created>1669021185620</created>
@@ -205,11 +211,29 @@
       <option name="project" value="LOCAL" />
       <updated>1669114239754</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="用户管理功能实现&#10;-20221123">
+      <created>1669133424261</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1669133424261</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
@@ -217,7 +241,29 @@
     </ignored-roots>
     <MESSAGE value="用户信息管理完成" />
     <MESSAGE value="营销管理功能实现&#10;-20221122" />
-    <option name="LAST_COMMIT_MESSAGE" value="营销管理功能实现&#10;-20221122" />
+    <MESSAGE value="用户管理功能实现&#10;-20221123" />
+    <option name="LAST_COMMIT_MESSAGE" value="用户管理功能实现&#10;-20221123" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/bao/crm/service/RoleService.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/bao/crm/service/RoleService.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/bao/crm/service/ModuleService.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
